@@ -1,21 +1,26 @@
-// import { useEffect, useState } from "react";
-// import type { Schema } from "../amplify/data/resource";
-// import { generateClient } from "aws-amplify/data";
-
-// const client = generateClient<Schema>();
 
 function App() {
-  // const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
+  
+  /** 
+   * TODO
+   * Spaces that can have digits
+   * A 5x5 grid of Spaces
+   * A random/seeded digit generator for each Space
+   * The Nibbler
+   * keyboard controls (arrows move, space to nibble)
+   * mouse/touch controls (press other space to move, press current space to nibble)
+   * A score system
+   * A check to see if the level is complete
+   * Generate a new level once complete
+   * 
+   * NICE TO HAVES
+   * Multiple game modes (Multiples, Factors, Prime, Equality, Non-Equality, Challenge that changes modes each round)
+   * Troggles!
+   * High score (local)
+   * High score (global)
+   * Animations between rounds
+   */
 
-  // useEffect(() => {
-  //   client.models.Todo.observeQuery().subscribe({
-  //     next: (data) => setTodos([...data.items]),
-  //   });
-  // }, []);
-
-  // function createTodo() {
-  //   client.models.Todo.create({ content: window.prompt("Todo content") });
-  // }
 
   return (
     <main>
