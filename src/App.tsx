@@ -12,10 +12,12 @@ function App() {
    * A score system
    * A check to see if the level is complete
    * Generate a new level once complete
+   * Some instructions
    * 
    * NICE TO HAVES
-   * Multiple game modes (Multiples, Factors, Prime, Equality, Non-Equality, Challenge that changes modes each round)
    * Troggles!
+   * Multiple game modes (Multiples, Factors, Prime, Equality, Non-Equality, Challenge that changes modes each round)
+   * A menu system (Main, mode select, enter scores)
    * High score (local)
    * High score (global)
    * Animations between rounds
@@ -23,8 +25,9 @@ function App() {
 
 
   return (
-    <main>
-      <h1>My own app</h1>
+    <main className="font-mono">
+      <h1 className="text-3xl ">DIGIT NIBBLER</h1>
+
       <div>
         🥳 App successfully hosted.
       </div>
