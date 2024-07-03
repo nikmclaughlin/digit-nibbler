@@ -19,9 +19,11 @@ export default function GameGrid() {
           <GridTile key={i} hasPlayer={i === playerPosition} />
         ))}
       </div>
-      <p>GRID HTML</p>
-      <Button onClick={() => setPlayerPosition(playerPosition + 1)}>
-        BUTTON!
+      <Button
+        className="border-2 border-black bg-slate-200"
+        onClick={() => setPlayerPosition(playerPosition + 1)}
+      >
+        Pos +1
       </Button>
     </>
   )

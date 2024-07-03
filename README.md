@@ -3,6 +3,7 @@
 A retro Number Muncher clone created for the LWJ Retro Games Web Dev Challenge
 
 ## Built With
+
 - React
 - Vite
 - Typescript
