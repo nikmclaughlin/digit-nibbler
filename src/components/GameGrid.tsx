@@ -13,6 +13,29 @@ export default function GameGrid() {
   const [gridValues, setGridValues] = useState(initialValues)
   const [score, setScore] = useState(0)
 
+  const handleKeyDown = (e) => {
+    let newP = playerPosition
+    switch (e.key) {
+      case 'ArrowUp':
+        newP -= 5
+        break
+      case 'ArrowRight':
+        newP += 1
+        break
+      case 'ArrowDown':
+        newP += 5
+        break
+      case 'ArrowLeft':
+        newP -= 1
+        break
+      case ' ':
+        nibbleDigit(playerPosition)
+        break
+    }
+    setPlayerPosition(newP)
+  }
+  document.addEventListener('keydown', handleKeyDown, { once: true })
+
   const nibbleDigit = (position: number) => {
     setScore(score + gridValues[position])
     const nextValues = gridValues.map((val, i) => {
@@ -25,12 +48,8 @@ export default function GameGrid() {
     setGridValues(nextValues)
   }
 
-  useEffect(() => {
-    console.log(playerPosition)
-  }, [playerPosition])
-
   return (
-    <>
+    <div>
       <p>Score: {score}</p>
       <div className="grid grid-cols-5 gap-x-0">
         {gridTiles.map((i) => (
@@ -53,6 +72,6 @@ export default function GameGrid() {
       >
         EAT
       </Button>
-    </>
+    </div>
   )
 }
