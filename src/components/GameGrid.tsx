@@ -1,7 +1,6 @@
 import { Button } from '@aws-amplify/ui-react'
 import { useEffect, useState } from 'react'
 import GridTile from './GridTile'
-// import Nibbler from "./Nibbler";
 
 export default function GameGrid() {
   const BOARD_SIZE = 25
