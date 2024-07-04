@@ -5,17 +5,24 @@ import GridTile from './GridTile'
 export default function GameGrid() {
   const BOARD_SIZE = 25
   const gridTiles = Array.from({ length: BOARD_SIZE }, (_, index) => index)
-  const numberSeed = Array.from({ length: BOARD_SIZE }, (_, _index) =>
+  const initialValues = Array.from({ length: BOARD_SIZE }, (_, _index) =>
     Math.ceil(Math.random() * 10)
   )
 
   const [playerPosition, setPlayerPosition] = useState(0)
-  const [gridValues, setGridValues] = useState(numberSeed)
+  const [gridValues, setGridValues] = useState(initialValues)
   const [score, setScore] = useState(0)
 
   const nibbleDigit = (position: number) => {
     setScore(score + gridValues[position])
-    gridValues[position] = 0
+    const nextValues = gridValues.map((val, i) => {
+      if (i === position) {
+        return 0
+      } else {
+        return val
+      }
+    })
+    setGridValues(nextValues)
   }
 
   useEffect(() => {

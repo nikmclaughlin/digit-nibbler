@@ -12,6 +12,7 @@ function App() {
    * -[ ] keyboard controls (arrows move, space to nibble)
    * -[ ] Movement follows grid (row/col traversal, edges)
    * -[ ] mouse/touch controls (press other space to move, press current space to nibble)
+   * -[ ] Improve value generation
    * -[ ] A score system
    * -[ ] A check to see if the level is complete
    * -[ ] Generate a new level once complete
