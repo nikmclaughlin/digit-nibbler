@@ -8,7 +8,7 @@ function App() {
    * -[X] A random/seeded digit generator for each Space
    * -[X] The Nibbler
    * -[X] Nibbler moves between tiles
-   * -[ ] Nibbler eats number
+   * -[x] Nibbler eats number
    * -[ ] keyboard controls (arrows move, space to nibble)
    * -[ ] Movement follows grid (row/col traversal, edges)
    * -[ ] mouse/touch controls (press other space to move, press current space to nibble)
