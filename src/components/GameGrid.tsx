@@ -1,52 +1,67 @@
-import { Button } from '@aws-amplify/ui-react'
-import { useEffect, useState } from 'react'
+// import { Button } from '@aws-amplify/ui-react'
+import { useCallback, useEffect, useState } from 'react'
+import { useKeyPressed } from '../hooks/useKeyPressed'
 import GridTile from './GridTile'
 
 export default function GameGrid() {
   const BOARD_SIZE = 25
   const gridTiles = Array.from({ length: BOARD_SIZE }, (_, index) => index)
-  const initialValues = Array.from({ length: BOARD_SIZE }, (_, _index) =>
+  const initialValues = Array.from({ length: BOARD_SIZE }, () =>
     Math.ceil(Math.random() * 10)
   )
+  const leftEdge = [0, 5, 10, 15, 20]
+  const rightEdge = [4, 9, 14, 19, 24]
+
+  const upPress = useKeyPressed('ArrowUp')
+  const rightPress = useKeyPressed('ArrowRight')
+  const downPress = useKeyPressed('ArrowDown')
+  const leftPress = useKeyPressed('ArrowLeft')
+  const spacePress = useKeyPressed(' ')
 
   const [playerPosition, setPlayerPosition] = useState(0)
   const [gridValues, setGridValues] = useState(initialValues)
   const [score, setScore] = useState(0)
 
-  const handleKeyDown = (e) => {
+  const nibbleDigit = useCallback(
+    ({
+      position,
+      values,
+      score,
+    }: {
+      position: number
+      values: Array<number>
+      score: number
+    }) => {
+      setScore(score + values[position])
+      const nextValues = values.map((val, i) => {
+        if (i === position) {
+          return 0
+        } else {
+          return val
+        }
+      })
+      setGridValues(nextValues)
+    },
+    []
+  )
+
+  useEffect(() => {
     let newP = playerPosition
-    switch (e.key) {
-      case 'ArrowUp':
-        newP -= 5
-        break
-      case 'ArrowRight':
-        newP += 1
-        break
-      case 'ArrowDown':
-        newP += 5
-        break
-      case 'ArrowLeft':
-        newP -= 1
-        break
-      case ' ':
-        nibbleDigit(playerPosition)
-        break
+    if (upPress && newP >= 5) {
+      newP -= 5
+    } else if (rightPress && !rightEdge.includes(newP)) {
+      newP += 1
+    } else if (downPress && newP < 20) {
+      newP += 5
+    } else if (leftPress && !leftEdge.includes(newP)) {
+      newP -= 1
+    } else if (spacePress) {
+      nibbleDigit({ position: newP, values: gridValues, score: score })
     }
     setPlayerPosition(newP)
-  }
-  document.addEventListener('keydown', handleKeyDown, { once: true })
-
-  const nibbleDigit = (position: number) => {
-    setScore(score + gridValues[position])
-    const nextValues = gridValues.map((val, i) => {
-      if (i === position) {
-        return 0
-      } else {
-        return val
-      }
-    })
-    setGridValues(nextValues)
-  }
+    // have to exclude playerPosition from deps to prevent infinite loop - probably not doing this right
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [downPress, leftPress, nibbleDigit, rightPress, spacePress, upPress])
 
   return (
     <div>
@@ -60,7 +75,7 @@ export default function GameGrid() {
           />
         ))}
       </div>
-      <Button
+      {/* <Button
         className="border-2 border-black bg-slate-200"
         onClick={() => setPlayerPosition((p) => p + 1)}
       >
@@ -71,7 +86,7 @@ export default function GameGrid() {
         onClick={() => nibbleDigit(playerPosition)}
       >
         EAT
-      </Button>
+      </Button> */}
     </div>
   )
 }
