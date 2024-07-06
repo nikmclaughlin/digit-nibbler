@@ -10,7 +10,7 @@ function App() {
    * -[X] Nibbler moves between tiles
    * -[x] Nibbler eats number
    * -[x] keyboard controls (arrows move, space to nibble)
-   * -[ ] Movement follows grid (row/col traversal, edges)
+   * -[x] Movement follows grid (row/col traversal, edges)
    * -[ ] Improve value generation
    * -[ ] A score system
    * -[ ] A check to see if the level is complete
@@ -18,11 +18,11 @@ function App() {
    * -[ ] Some instructions
    * ===================================
    * NICE TO HAVES
-   * -[ ] mouse/touch controls (press other space to move, press current space to nibble)
    * -[ ] Multiple game modes (Multiples, Factors, Prime, Equality, Non-Equality, Challenge that changes modes each round)
    * -[ ] Troggles!
    * -[ ] A menu system (Main, mode select, enter scores)
    * -[ ] High score (local)
+   * -[ ] mouse/touch controls (press other space to move, press current space to nibble)
    * -[ ] High score (global)
    * -[ ] Animations between rounds
    */

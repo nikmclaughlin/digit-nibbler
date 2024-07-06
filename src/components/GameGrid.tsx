@@ -23,24 +23,17 @@ export default function GameGrid() {
   const [score, setScore] = useState(0)
 
   const nibbleDigit = useCallback(
-    ({
-      position,
-      values,
-      score,
-    }: {
-      position: number
-      values: Array<number>
-      score: number
-    }) => {
-      setScore(score + values[position])
-      const nextValues = values.map((val, i) => {
-        if (i === position) {
-          return 0
-        } else {
-          return val
-        }
-      })
-      setGridValues(nextValues)
+    ({ position, values }: { position: number; values: Array<number> }) => {
+      setScore((score) => score + values[position])
+      setGridValues((values) =>
+        values.map((val, i) => {
+          if (i === position) {
+            return 0
+          } else {
+            return val
+          }
+        })
+      )
     },
     []
   )
@@ -56,10 +49,10 @@ export default function GameGrid() {
     } else if (leftPress && !leftEdge.includes(newP)) {
       newP -= 1
     } else if (spacePress) {
-      nibbleDigit({ position: newP, values: gridValues, score: score })
+      nibbleDigit({ position: newP, values: gridValues })
     }
     setPlayerPosition(newP)
-    // have to exclude playerPosition from deps to prevent infinite loop - probably not doing this right
+    // have to exclude playerPosition from deps to prevent infinite loop, but need position to nibble :\ - probably not doing this right
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [downPress, leftPress, nibbleDigit, rightPress, spacePress, upPress])
 
