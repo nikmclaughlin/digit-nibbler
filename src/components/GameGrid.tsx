@@ -6,9 +6,6 @@ import GridTile from './GridTile'
 export default function GameGrid() {
   const BOARD_SIZE = 25
   const gridTiles = Array.from({ length: BOARD_SIZE }, (_, index) => index)
-  const initialValues = Array.from({ length: BOARD_SIZE }, () =>
-    Math.ceil(Math.random() * 10)
-  )
   const leftEdge = [0, 5, 10, 15, 20]
   const rightEdge = [4, 9, 14, 19, 24]
 
@@ -17,6 +14,11 @@ export default function GameGrid() {
   const downPress = useKeyPressed('ArrowDown')
   const leftPress = useKeyPressed('ArrowLeft')
   const spacePress = useKeyPressed(' ')
+
+  // Initialize game board
+  const initialValues = Array.from({ length: BOARD_SIZE }, () =>
+    Math.ceil(Math.random() * 10)
+  )
 
   const [playerPosition, setPlayerPosition] = useState(0)
   const [gridValues, setGridValues] = useState(initialValues)

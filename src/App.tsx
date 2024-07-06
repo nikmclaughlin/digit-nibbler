@@ -1,4 +1,7 @@
+import { Hero } from 'nes-ui-react'
+import { useState } from 'react'
 import GameGrid from './components/GameGrid'
+import ModeSelector from './components/ModeSelector'
 
 function App() {
   /**
@@ -27,13 +30,17 @@ function App() {
    * -[ ] Animations between rounds
    */
 
+  const [gameMode, setGameMode] = useState('')
+
   return (
     <main className="font-mono">
       <h1 className="text-3xl ">DIGIT NIBBLER</h1>
-      <div id="gameContainer" className="w-fit border-2 border-green-500">
+      <Hero id="gameContainer" title="DIGIT NIBBLER" className="w-fit">
+        <ModeSelector {...setGameMode} />
         <GameGrid></GameGrid>
-      </div>
+      </Hero>
       <div>🥳 App successfully hosted.</div>
+      <p>Current Mode: {gameMode}</p>
     </main>
   )
 }
