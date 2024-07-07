@@ -1,7 +1,7 @@
 import { Container, Heading, Hero, Text } from 'nes-ui-react'
 import { useState } from 'react'
 import GameGrid from './components/GameGrid'
-import ModeSelector from './components/ModeSelector'
+// import ModeSelector from './components/ModeSelector'
 
 function App() {
   /**
@@ -14,16 +14,17 @@ function App() {
    * -[x] Nibbler eats number
    * -[x] keyboard controls (arrows move, space to nibble)
    * -[x] Movement follows grid (row/col traversal, edges)
-   * -[ ] Sound effects!
+   * -[x] Sound effects!
+   * -[ ] A menu page
+   * -[ ] Some instructions
    * -[ ] Improve value generation
    * -[ ] Improve score system
    * -[x] A check to see if the level is complete
    * -[x] Generate a new level once complete
-   * -[ ] Some instructions
    * ===================================
    * NICE TO HAVES
    * -[ ] Multiple game modes (Multiples, Factors, Prime, Equality, Non-Equality, Challenge that changes modes each round)
-   * -[ ] A menu system (Main, mode select, enter scores)
+   * -[ ] Time-based rewards/threats
    * -[ ] Troggles!
    * -[ ] Music & animations
    * -[ ] High score (local)
