@@ -17,6 +17,7 @@ function App() {
    * -[x] Sound effects!
    * -[ ] A menu page
    * -[ ] Some instructions
+   * -[ ] Mute button
    * -[ ] Improve value generation
    * -[ ] Improve score system
    * -[x] A check to see if the level is complete
