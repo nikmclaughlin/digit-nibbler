@@ -1,4 +1,5 @@
 // import { Button } from '@aws-amplify/ui-react'
+import { Container, Text } from 'nes-ui-react'
 import { useCallback, useEffect, useState } from 'react'
 import { useKeyPressed } from '../hooks/useKeyPressed'
 import GridTile from './GridTile'
@@ -60,7 +61,9 @@ export default function GameGrid() {
 
   return (
     <div>
-      <p>Score: {score}</p>
+      <Container className="w-fit">
+        <Text size="xlarge">Score: {score}</Text>
+      </Container>
       <div className="grid grid-cols-5 gap-x-0">
         {gridTiles.map((i) => (
           <GridTile

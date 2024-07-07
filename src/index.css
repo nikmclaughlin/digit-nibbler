@@ -1,3 +1,11 @@
+@import 'nes-ui-react';
+
+.pixelicon-nibbler {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -0.5 16 16' shape-rendering='crispEdges'%3e%3cpath stroke='%23ffffff' d='M6 1h1M10 1h1M5 2h1M7 2h1M9 2h1M11 2h1' /%3e%3cpath stroke='%23000000' d='M6 2h1M10 2h1' /%3e%3cpath stroke='%2380ff00' d='M3 3h1M4 3h1M5 3h1M6 3h1M7 3h1M8 3h1M9 3h1M10 3h1M11 3h1M2 4h1M3 4h1M5 4h1M6 4h1M7 4h1M8 4h1M9 4h1M10 4h1M11 4h1M2 5h1M3 5h1M5 5h1M6 5h1M7 5h1M8 5h1M9 5h1M10 5h1M11 5h1M2 6h1M3 6h1M2 7h1M3 7h1M2 8h1M3 8h1M4 8h1M5 8h1M6 8h1M7 8h1M8 8h1M9 8h1M10 8h1M11 8h1M12 8h1M3 9h1M4 9h1M5 9h1M6 9h1M7 9h1M8 9h1M9 9h1M10 9h1M11 9h1M6 10h1M9 10h1M6 11h1M9 11h1M6 12h1M9 12h1M6 13h1M9 13h1M6 14h1M9 14h1M4 15h1M5 15h1M6 15h1M9 15h1M10 15h1M11 15h1' /%3e%3c/svg%3e");
+  position: absolute;
+  transform: translate(-1rem, -0.5rem);
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
