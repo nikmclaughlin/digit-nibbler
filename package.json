@@ -14,11 +14,13 @@
     "aws-amplify": "^6.2.0",
     "nes-ui-react": "^0.2.15",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "use-sound": "^4.0.3"
   },
   "devDependencies": {
     "@aws-amplify/backend": "^1.0.0",
     "@aws-amplify/backend-cli": "^1.0.1",
+    "@types/howler": "^2.2.11",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
