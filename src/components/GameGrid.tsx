@@ -12,10 +12,17 @@ import {
   Text,
 } from 'nes-ui-react'
 import { useCallback, useEffect, useState } from 'react'
+import useSound from 'use-sound'
 import { useKeyPressed } from '../hooks/useKeyPressed'
 import GridTile from './GridTile'
 import { isPrime, primeComplete } from './util/rules'
-import VictoryModal from './victoryModal'
+import buttonDownSfx from '/dn-button-down.mp3'
+import buttonUpSfx from '/dn-button-up.mp3'
+import defeatSfx from '/dn-lose.mp3'
+import ouchSfx from '/dn-ouch.mp3'
+import victorySfx from '/dn-win.mp3'
+import yumSfx from '/dn-yum.mp3'
+// import VictoryModal from './victoryModal'
 
 type GameGridProps = {
   reset: () => void
@@ -32,6 +39,12 @@ export default function GameGrid({ reset }: GameGridProps) {
   const downPress = useKeyPressed('ArrowDown')
   const leftPress = useKeyPressed('ArrowLeft')
   const spacePress = useKeyPressed(' ')
+  const [playOuch] = useSound(ouchSfx)
+  const [playYum] = useSound(yumSfx)
+  const [playDefeat] = useSound(defeatSfx)
+  const [playVictory] = useSound(victorySfx)
+  const [playButtonDown] = useSound(buttonDownSfx, { volume: 1 })
+  const [playButtonUp] = useSound(buttonUpSfx, { volume: 1 })
 
   // Initialize game board
   const initialValues = Array.from({ length: BOARD_SIZE }, () =>
@@ -49,8 +62,10 @@ export default function GameGrid({ reset }: GameGridProps) {
   const nibbleDigit = useCallback(
     ({ position, values }: { position: number; values: Array<number> }) => {
       if (isPrime(values[position])) {
+        playYum()
         setScore((score) => score + values[position])
       } else {
+        playOuch()
         setLives((lives) => lives - 1)
         // alert(`${values[position]} is not a Prime number!`)
       }
@@ -64,20 +79,22 @@ export default function GameGrid({ reset }: GameGridProps) {
         })
       )
     },
-    []
+    [playOuch, playYum]
   )
 
   useEffect(() => {
     if (primeComplete(gridValues)) {
+      playVictory()
       setVictoryModalOpen(true)
     }
-  }, [gridValues])
+  }, [gridValues, playVictory])
 
   useEffect(() => {
     if (lives === 0) {
+      playDefeat()
       setDefeatModalOpen(true)
     }
-  }, [lives])
+  }, [lives, playDefeat])
 
   useEffect(() => {
     let newP = playerPosition
@@ -129,6 +146,8 @@ export default function GameGrid({ reset }: GameGridProps) {
         <Footer>
           <IconButton
             color="success"
+            onMouseDown={() => playButtonDown()}
+            onMouseUp={() => playButtonUp()}
             onClick={() => {
               setVictoryModalOpen(false)
               reset()
@@ -158,6 +177,8 @@ export default function GameGrid({ reset }: GameGridProps) {
         <Footer>
           <IconButton
             color="error"
+            onMouseDown={() => playButtonDown()}
+            onMouseUp={() => playButtonUp()}
             onClick={() => {
               setDefeatModalOpen(false)
               reset()
