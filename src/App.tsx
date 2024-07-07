@@ -14,17 +14,18 @@ function App() {
    * -[x] Nibbler eats number
    * -[x] keyboard controls (arrows move, space to nibble)
    * -[x] Movement follows grid (row/col traversal, edges)
+   * -[ ] Sound effects!
    * -[ ] Improve value generation
-   * -[ ] A score system
-   * -[ ] A check to see if the level is complete
-   * -[ ] Generate a new level once complete
+   * -[ ] Improve score system
+   * -[x] A check to see if the level is complete
+   * -[x] Generate a new level once complete
    * -[ ] Some instructions
    * ===================================
    * NICE TO HAVES
    * -[ ] Multiple game modes (Multiples, Factors, Prime, Equality, Non-Equality, Challenge that changes modes each round)
-   * -[ ] Troggles!
-   * -[ ] Sound effects!
    * -[ ] A menu system (Main, mode select, enter scores)
+   * -[ ] Troggles!
+   * -[ ] Music & animations
    * -[ ] High score (local)
    * -[ ] mouse/touch controls (press other space to move, press current space to nibble)
    * -[ ] High score (global)
@@ -32,15 +33,29 @@ function App() {
    */
 
   // const [gameMode, setGameMode] = useState('')
+  const [gameKey, setGameKey] = useState(1)
 
   return (
-    <main>
-      <Heading size="xlarge">DIGIT NIBBLER</Heading>
-      <Container id="gameContainer" title="DIGIT NIBBLER" className="w-fit">
+    <main className="flex flex-col place-items-center w-screen">
+      <Heading centered size="xlarge">
+        DIGIT NIBBLER
+      </Heading>
+      <Container
+        roundedCorners
+        id="gameContainer"
+        title="DIGIT NIBBLER"
+        className="w-fit"
+      >
         {/* <ModeSelector {...setGameMode} /> */}
-        <GameGrid></GameGrid>
+        <GameGrid
+          key={gameKey}
+          reset={() => {
+            console.log('resetting!')
+            setGameKey((gk) => gk + 1)
+          }}
+        ></GameGrid>
       </Container>
-      <Text>🥳 App successfully hosted.</Text>
+      <Text>made with boops and ❤️ by nik</Text>
       {/* <Text>Current Mode: {gameMode}</Text> */}
     </main>
   )
