@@ -23,6 +23,7 @@ function App() {
    * NICE TO HAVES
    * -[ ] Multiple game modes (Multiples, Factors, Prime, Equality, Non-Equality, Challenge that changes modes each round)
    * -[ ] Troggles!
+   * -[ ] Sound effects!
    * -[ ] A menu system (Main, mode select, enter scores)
    * -[ ] High score (local)
    * -[ ] mouse/touch controls (press other space to move, press current space to nibble)
@@ -30,7 +31,7 @@ function App() {
    * -[ ] Animations between rounds
    */
 
-  const [gameMode, setGameMode] = useState('')
+  // const [gameMode, setGameMode] = useState('')
 
   return (
     <main>
@@ -40,7 +41,7 @@ function App() {
         <GameGrid></GameGrid>
       </Container>
       <Text>🥳 App successfully hosted.</Text>
-      <Text>Current Mode: {gameMode}</Text>
+      {/* <Text>Current Mode: {gameMode}</Text> */}
     </main>
   )
 }
