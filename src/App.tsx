@@ -1,4 +1,4 @@
-import { Container, Heading, Hero, Text } from 'nes-ui-react'
+import { Container, Heading, Text } from 'nes-ui-react'
 import { useState } from 'react'
 import GameGrid from './components/GameGrid'
 // import ModeSelector from './components/ModeSelector'
