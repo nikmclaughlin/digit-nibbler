@@ -34,11 +34,14 @@ export default function GameGrid({ reset }: GameGridProps) {
   const leftEdge = [0, 5, 10, 15, 20]
   const rightEdge = [4, 9, 14, 19, 24]
 
+  // Keyboad controls
   const upPress = useKeyPressed('ArrowUp')
   const rightPress = useKeyPressed('ArrowRight')
   const downPress = useKeyPressed('ArrowDown')
   const leftPress = useKeyPressed('ArrowLeft')
   const spacePress = useKeyPressed(' ')
+
+  // SFX
   const [playOuch] = useSound(ouchSfx)
   const [playYum] = useSound(yumSfx)
   const [playDefeat] = useSound(defeatSfx)
@@ -52,6 +55,7 @@ export default function GameGrid({ reset }: GameGridProps) {
     Math.ceil(Math.random() * 10)
   )
 
+  // State city
   const [playerPosition, setPlayerPosition] = useState(0)
   const [gridValues, setGridValues] = useState(initialValues)
   const [score, setScore] = useState(0)
@@ -59,6 +63,7 @@ export default function GameGrid({ reset }: GameGridProps) {
   const [victoryModalOpen, setVictoryModalOpen] = useState(false)
   const [defeatModalOpen, setDefeatModalOpen] = useState(false)
 
+  // Nibble handling
   const nibbleDigit = useCallback(
     ({ position, values }: { position: number; values: Array<number> }) => {
       if (isPrime(values[position])) {
@@ -66,6 +71,7 @@ export default function GameGrid({ reset }: GameGridProps) {
         setScore((score) => score + values[position])
       } else {
         playOuch()
+        setScore((score) => score - 5)
         setLives((lives) => lives - 1)
         // alert(`${values[position]} is not a Prime number!`)
       }
@@ -82,6 +88,7 @@ export default function GameGrid({ reset }: GameGridProps) {
     [playOuch, playYum]
   )
 
+  // Victory conditions
   useEffect(() => {
     if (primeComplete(gridValues)) {
       playVictory()
@@ -89,6 +96,7 @@ export default function GameGrid({ reset }: GameGridProps) {
     }
   }, [gridValues, playVictory])
 
+  // Defeat conditions
   useEffect(() => {
     if (lives === 0) {
       playDefeat()
@@ -96,6 +104,7 @@ export default function GameGrid({ reset }: GameGridProps) {
     }
   }, [lives, playDefeat])
 
+  // Player controls
   useEffect(() => {
     let newP = playerPosition
     if (upPress && newP >= 5) {
@@ -207,18 +216,6 @@ export default function GameGrid({ reset }: GameGridProps) {
           />
         ))}
       </div>
-      {/* <Button
-        className="border-2 border-black bg-slate-200"
-        onClick={() => setPlayerPosition((p) => p + 1)}
-      >
-        Pos +1
-      </Button>
-      <Button
-        className="border-2 border-black bg-slate-200"
-        onClick={() => nibbleDigit(playerPosition)}
-      >
-        EAT
-      </Button> */}
     </div>
   )
 }
