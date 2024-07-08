@@ -1,5 +1,5 @@
 import { IconButton, Text } from 'nes-ui-react'
-import { useRouteError } from 'react-router-dom'
+import { NavLink, useRouteError } from 'react-router-dom'
 import useSound from 'use-sound'
 import buttonDownSfx from '/dn-button-down.mp3'
 import buttonUpSfx from '/dn-button-up.mp3'
@@ -19,17 +19,15 @@ export default function ErrorPage() {
       <h1>Oops!</h1>
       <p>Sorry, an unexpected error has occurred.</p>
 
-      <IconButton
-        color="success"
-        onMouseDown={() => playButtonDown()}
-        onMouseUp={() => playButtonUp()}
-        onClick={() => {
-          console.log('rerouting')
-          //   route to root
-        }}
-      >
-        <Text size="small">Go Home</Text>
-      </IconButton>
+      <NavLink to={'/'}>
+        <IconButton
+          color="success"
+          onMouseDown={() => playButtonDown()}
+          onMouseUp={() => playButtonUp()}
+        >
+          <Text size="small">Go Home</Text>
+        </IconButton>
+      </NavLink>
     </div>
   )
 }
