@@ -106,7 +106,7 @@ export default function GameGrid({ reset }: GameGridProps) {
       newP += 5
     } else if (leftPress && !leftEdge.includes(newP)) {
       newP -= 1
-    } else if (spacePress) {
+    } else if (spacePress && gridValues[newP] !== 0) {
       nibbleDigit({ position: newP, values: gridValues })
     }
     setPlayerPosition(newP)
@@ -197,6 +197,7 @@ export default function GameGrid({ reset }: GameGridProps) {
         <div className="flex gap-1">Lives: {renderLives(lives)}</div>
       </div>
       <Heading>PRIME: Nibble all of the prime numbers</Heading>
+      <Text>Arrows to move, spacebar to nibble</Text>
       <div className="grid grid-cols-5 gap-x-0">
         {gridTiles.map((i) => (
           <GridTile

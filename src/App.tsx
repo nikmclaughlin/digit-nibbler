@@ -11,10 +11,11 @@ function App() {
    * -[X] A random/seeded digit generator for each Space
    * -[X] The Nibbler
    * -[X] Nibbler moves between tiles
-   * -[x] Nibbler eats number
-   * -[x] keyboard controls (arrows move, space to nibble)
-   * -[x] Movement follows grid (row/col traversal, edges)
-   * -[x] Sound effects!
+   * -[X] Nibbler eats number
+   * -[X] keyboard controls (arrows move, space to nibble)
+   * -[X] Movement follows grid (row/col traversal, edges)
+   * -[X] Sound effects!
+   * -[X] Prevent nibbling of empty tiles
    * -[ ] A menu page
    * -[ ] Some instructions
    * -[ ] Mute button
