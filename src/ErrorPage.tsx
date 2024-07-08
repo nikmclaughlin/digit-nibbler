@@ -1,4 +1,4 @@
-import { IconButton, PixelIcon, Text } from 'nes-ui-react'
+import { IconButton, Text } from 'nes-ui-react'
 import { useRouteError } from 'react-router-dom'
 import useSound from 'use-sound'
 import buttonDownSfx from '/dn-button-down.mp3'
@@ -18,9 +18,7 @@ export default function ErrorPage() {
     >
       <h1>Oops!</h1>
       <p>Sorry, an unexpected error has occurred.</p>
-      <p>
-        <i>{error.statusText || error.message}</i>
-      </p>
+
       <IconButton
         color="success"
         onMouseDown={() => playButtonDown()}
