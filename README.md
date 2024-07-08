@@ -6,9 +6,9 @@ A retro Number Muncher clone created for the LWJ Retro Games Web Dev Challenge
 
 - React
 - Vite
-- React Router
 - Typescript
 - TailwindCSS
+- React Router
 - AWS Amplify
 - [nes-ui-react](https://kyr0.github.io/nes-ui-react/)
 - Josh Comeau's [`use-sound` hook](https://www.joshwcomeau.com/react/announcing-use-sound-react-hook/)

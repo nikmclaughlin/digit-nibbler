@@ -1,4 +1,4 @@
-import { Container, Text } from 'nes-ui-react'
+import { Container } from 'nes-ui-react'
 import { useState } from 'react'
 import GameGrid from '../components/GameGrid'
 

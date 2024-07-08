@@ -11,8 +11,12 @@ export default function Index() {
       >
         <img src="/main-menu.svg"></img>
         <Text centered size="large">
-          A loving tribute to MECC's 1990 edutainment classic, Number Munchers,
-          created for LWJ's Web Dev Challenge.
+          A loving tribute to MECC's{' '}
+          <a className="" href="https://www.mecc.co/" target="_blank">
+            (ref)
+          </a>{' '}
+          1990 edutainment classic, Number Munchers, created for LWJ's Web Dev
+          Challenge.
         </Text>
       </Container>
     </>

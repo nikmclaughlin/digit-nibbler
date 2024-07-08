@@ -1,5 +1,5 @@
-// import { Button } from '@aws-amplify/ui-react'
 import {
+  Button,
   Container,
   Footer,
   Header,
@@ -22,7 +22,6 @@ import defeatSfx from '/dn-lose.mp3'
 import ouchSfx from '/dn-ouch.mp3'
 import victorySfx from '/dn-win.mp3'
 import yumSfx from '/dn-yum.mp3'
-// import VictoryModal from './victoryModal'
 
 type GameGridProps = {
   reset: () => void
@@ -133,10 +132,6 @@ export default function GameGrid({ reset }: GameGridProps) {
 
   return (
     <div>
-      {/* <VictoryModal
-        isOpen={victoryModalOpen}
-        onClose={() => setVictoryModalOpen(false)}
-      /> */}
       <Modal
         open={victoryModalOpen}
         onClose={() => {
@@ -184,8 +179,8 @@ export default function GameGrid({ reset }: GameGridProps) {
           Your digital nibbling days are done.
         </ModalContent>
         <Footer className="flex w-full place-content-evenly">
-          <IconButton
-            color="error"
+          <Button
+            color="warning"
             onMouseDown={() => playButtonDown()}
             onMouseUp={() => playButtonUp()}
             onClick={() => {
@@ -194,16 +189,18 @@ export default function GameGrid({ reset }: GameGridProps) {
             }}
           >
             <Text size="small">Play again</Text>
-            <PixelIcon name="pixelicon-checkmark" size="small" />
-          </IconButton>
+          </Button>
         </Footer>
       </Modal>
 
       <div className="flex place-content-between">
-        <Container className="w-fit">
-          <Text size="xlarge">Score: {score}</Text>
+        <Container roundedCorners className="w-fit">
+          <Text size="large">Score: {score}</Text>
         </Container>
-        <div className="flex gap-1">Lives: {renderLives(lives)}</div>
+        <div className="flex gap-1">
+          <Text>Lives: </Text>
+          {renderLives(lives)}
+        </div>
       </div>
       <Heading>PRIME: Nibble all of the prime numbers</Heading>
       <div className="grid grid-cols-5 gap-x-0">
