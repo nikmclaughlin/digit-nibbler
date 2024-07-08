@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import outputs from '../amplify_outputs.json'
 import App from './App.tsx'
+import GameGrid from './components/GameGrid.tsx'
+import ErrorPage from './ErrorPage.tsx'
 import './index.css'
 
 Amplify.configure(outputs)
@@ -12,6 +14,15 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
+    errorElement: <ErrorPage />,
+    // children: [
+    //   {
+    //     path: 'game',
+    //     element: (
+
+    //     ),
+    //   },
+    // ],
   },
 ])
 
