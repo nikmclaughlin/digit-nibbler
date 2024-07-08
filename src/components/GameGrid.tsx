@@ -44,7 +44,7 @@ export default function GameGrid({ reset }: GameGridProps) {
   // SFX
   const [playOuch] = useSound(ouchSfx)
   const [playYum] = useSound(yumSfx)
-  const [playDefeat] = useSound(defeatSfx)
+  const [playDefeat] = useSound(defeatSfx, { volume: 0.2 })
   const [playVictory] = useSound(victorySfx)
   const [playButtonDown] = useSound(buttonDownSfx, { volume: 1 })
   const [playButtonUp] = useSound(buttonUpSfx, { volume: 1 })
@@ -152,7 +152,7 @@ export default function GameGrid({ reset }: GameGridProps) {
         <ModalContent className="text-center">
           Congratulations! You nibbled all the right digits!
         </ModalContent>
-        <Footer>
+        <Footer className="flex w-full place-content-evenly">
           <IconButton
             color="success"
             onMouseDown={() => playButtonDown()}
@@ -183,7 +183,7 @@ export default function GameGrid({ reset }: GameGridProps) {
         <ModalContent className="text-center">
           Your digital nibbling days are done.
         </ModalContent>
-        <Footer>
+        <Footer className="flex w-full place-content-evenly">
           <IconButton
             color="error"
             onMouseDown={() => playButtonDown()}
@@ -206,7 +206,6 @@ export default function GameGrid({ reset }: GameGridProps) {
         <div className="flex gap-1">Lives: {renderLives(lives)}</div>
       </div>
       <Heading>PRIME: Nibble all of the prime numbers</Heading>
-      <Text>Arrows to move, spacebar to nibble</Text>
       <div className="grid grid-cols-5 gap-x-0">
         {gridTiles.map((i) => (
           <GridTile

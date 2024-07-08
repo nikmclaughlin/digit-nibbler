@@ -1,6 +1,26 @@
-import { Container, Heading, Text } from 'nes-ui-react'
+// import { useState } from 'react'
+// import GameGrid from './components/GameGrid'
+import {
+  Badge,
+  Button,
+  Header,
+  Heading,
+  IconButton,
+  List,
+  Modal,
+  ModalContent,
+  PixelBorder,
+  PixelIcon,
+  Spacer,
+  Text,
+  Toolbar,
+} from 'nes-ui-react'
 import { useState } from 'react'
-import GameGrid from './components/GameGrid'
+import { NavLink, Outlet } from 'react-router-dom'
+import useSound from 'use-sound'
+import buttonDownSfx from '/dn-button-down.mp3'
+import buttonUpSfx from '/dn-button-up.mp3'
+
 // import ModeSelector from './components/ModeSelector'
 
 function App() {
@@ -36,30 +56,82 @@ function App() {
    */
 
   // const [gameMode, setGameMode] = useState('')
-  const [gameKey, setGameKey] = useState(1)
+  const [menuDialogOpen, setMenuDialogOpen] = useState(false)
+  const [playButtonDown] = useSound(buttonDownSfx)
+  const [playButtonUp] = useSound(buttonUpSfx)
 
   return (
     <main className="flex flex-col place-items-center w-screen">
       <Heading centered size="xlarge">
         DIGIT NIBBLER
       </Heading>
-      <Container
-        roundedCorners
-        id="gameContainer"
-        title="DIGIT NIBBLER"
-        className="w-fit"
-      >
+      <Toolbar roundedCorners className="w-[95vw]">
+        <Button
+          onMouseDown={() => playButtonDown()}
+          onMouseUp={() => playButtonUp()}
+          onClick={() => setMenuDialogOpen(true)}
+        >
+          <Text size="small">HOW TO PLAY</Text>
+        </Button>
+
+        <Modal backdropClose open={menuDialogOpen}>
+          <Header>
+            <Spacer />
+            <Heading dense>INSTRUCTIONS</Heading>
+            <Spacer />
+            <IconButton
+              color="error"
+              size="small"
+              onClick={() => setMenuDialogOpen(false)}
+              onMouseDown={() => playButtonDown()}
+              onMouseUp={() => playButtonUp()}
+            >
+              <PixelIcon name="pixelicon-close" size="small" />
+            </IconButton>
+          </Header>
+          <ModalContent>
+            <Heading size="large">OBJECTIVE</Heading>
+            <Text>
+              Nibble all the digits that align to the current board's theme.
+              [WIP] So far the only game mode is "PRIMES", so only nibble the
+              prime numbers!
+            </Text>
+            <Heading size="large">CONTROLS</Heading>
+            <Text size="large">! Keyboard Required</Text>
+            <List>
+              <li>- Arrow keys to move </li>
+              <li>- Spacebar to nibble</li>
+            </List>
+          </ModalContent>
+        </Modal>
+
+        <Spacer />
         {/* <ModeSelector {...setGameMode} /> */}
-        <GameGrid
-          key={gameKey}
-          reset={() => {
-            console.log('resetting!')
-            setGameKey((gk) => gk + 1)
-          }}
-        ></GameGrid>
-      </Container>
-      <Text>made with boops and ❤️ by nik</Text>
-      {/* <Text>Current Mode: {gameMode}</Text> */}
+        <NavLink
+          to={'game'}
+          className={({ isActive }) => (isActive ? 'hidden' : '')}
+        >
+          <Button
+            onMouseDown={() => playButtonDown()}
+            onMouseUp={() => playButtonUp()}
+          >
+            <Text size="small">PRESS START</Text>
+          </Button>
+        </NavLink>
+        <NavLink
+          to={'/'}
+          className={({ isActive }) => (isActive ? 'hidden' : '')}
+        >
+          <Button
+            onMouseDown={() => playButtonDown()}
+            onMouseUp={() => playButtonUp()}
+          >
+            MAIN MENU
+          </Button>
+        </NavLink>
+      </Toolbar>
+      <Outlet />
+      <Text size="small">made with boops and ❤️ by nik</Text>
     </main>
   )
 }
