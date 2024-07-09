@@ -7,20 +7,6 @@ import mutedContext from './components/util/mutedContext'
 // import ModeSelector from './components/ModeSelector'
 
 function App() {
-  /**
-   * TODO
-   * -[ ] Improve value generation
-   * -[ ] Improve score system
-   * -[ ] Multiple game modes (Multiples, Factors, Prime, Equality, Non-Equality, Challenge that changes modes each round)
-   * -[ ] Time-based rewards/threats
-   * -[ ] Troggles!
-   * -[ ] Music & animations
-   * -[ ] High score (local)
-   * -[ ] mouse & touch controls (press other space to move, press current space to nibble)
-   * -[ ] High score (global)
-   * -[ ] Animation screens between rounds
-   */
-
   // const [gameMode, setGameMode] = useState('')
   const [muted, setMuted] = useState(false)
 
