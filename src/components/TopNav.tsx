@@ -11,16 +11,25 @@ import {
   Text,
   Toolbar,
 } from 'nes-ui-react'
-import { useState } from 'react'
+import { MouseEvent, useContext, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import useSound from 'use-sound'
+import mutedContext from './util/mutedContext'
 import buttonDownSfx from '/dn-button-down.mp3'
 import buttonUpSfx from '/dn-button-up.mp3'
 
 export default function TopNav() {
   const [menuDialogOpen, setMenuDialogOpen] = useState(false)
-  const [playButtonDown] = useSound(buttonDownSfx)
-  const [playButtonUp] = useSound(buttonUpSfx)
+  const { muted, setMuted } = useContext(mutedContext)
+  const [playButtonDown] = useSound(buttonDownSfx, { soundEnabled: !muted })
+  const [playButtonUp] = useSound(buttonUpSfx, { soundEnabled: !muted })
+
+  const handleMuteClick = (e: MouseEvent<HTMLElement>) => {
+    console.log('clicked mute')
+    e.currentTarget.blur()
+    setMuted()
+  }
+
   return (
     <Toolbar roundedCorners className="w-[95vw]">
       <Button
@@ -63,6 +72,9 @@ export default function TopNav() {
       </Modal>
 
       <Spacer />
+      <Button onClick={(e) => handleMuteClick(e)}>
+        {muted ? 'UNMUTE' : 'MUTE'}
+      </Button>
       {/* <ModeSelector {...setGameMode} /> */}
       <NavLink
         to={'game'}

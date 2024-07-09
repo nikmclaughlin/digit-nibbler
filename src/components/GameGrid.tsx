@@ -11,10 +11,11 @@ import {
   Spacer,
   Text,
 } from 'nes-ui-react'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import useSound from 'use-sound'
 import { useKeyPressed } from '../hooks/useKeyPressed'
 import GridTile from './GridTile'
+import mutedContext from './util/mutedContext'
 import { isPrime, primeComplete } from './util/rules'
 import buttonDownSfx from '/dn-button-down.mp3'
 import buttonUpSfx from '/dn-button-up.mp3'
@@ -41,12 +42,16 @@ export default function GameGrid({ reset }: GameGridProps) {
   const spacePress = useKeyPressed(' ')
 
   // SFX
-  const [playOuch] = useSound(ouchSfx)
-  const [playYum] = useSound(yumSfx)
-  const [playDefeat] = useSound(defeatSfx, { volume: 0.2 })
-  const [playVictory] = useSound(victorySfx)
-  const [playButtonDown] = useSound(buttonDownSfx, { volume: 1 })
-  const [playButtonUp] = useSound(buttonUpSfx, { volume: 1 })
+  const { muted } = useContext(mutedContext)
+  const [playOuch] = useSound(ouchSfx, { soundEnabled: !muted })
+  const [playYum] = useSound(yumSfx, { soundEnabled: !muted })
+  const [playDefeat] = useSound(defeatSfx, {
+    soundEnabled: !muted,
+    volume: 0.2,
+  })
+  const [playVictory] = useSound(victorySfx, { soundEnabled: !muted })
+  const [playButtonDown] = useSound(buttonDownSfx, { soundEnabled: !muted })
+  const [playButtonUp] = useSound(buttonUpSfx, { soundEnabled: !muted })
 
   // Initialize game board
   const initialValues = Array.from({ length: BOARD_SIZE }, () =>

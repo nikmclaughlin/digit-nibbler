@@ -1,6 +1,8 @@
 import { IconButton, Text } from 'nes-ui-react'
+import { useContext } from 'react'
 import { NavLink, useRouteError } from 'react-router-dom'
 import useSound from 'use-sound'
+import mutedContext from './components/util/mutedContext'
 import buttonDownSfx from '/dn-button-down.mp3'
 import buttonUpSfx from '/dn-button-up.mp3'
 
@@ -8,8 +10,9 @@ export default function ErrorPage() {
   const error = useRouteError()
   console.error(error)
 
-  const [playButtonDown] = useSound(buttonDownSfx)
-  const [playButtonUp] = useSound(buttonUpSfx)
+  const { muted } = useContext(mutedContext)
+  const [playButtonDown] = useSound(buttonDownSfx, { soundEnabled: !muted })
+  const [playButtonUp] = useSound(buttonUpSfx, { soundEnabled: !muted })
 
   return (
     <div
