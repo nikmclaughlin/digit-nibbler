@@ -5,6 +5,7 @@ export function useKeyPressed(targetKey: string) {
 
   const downHandler = useCallback(
     (e: KeyboardEvent) => {
+      e.preventDefault()
       const { key } = e
       if (key === targetKey) {
         setKeyPressed(true)
@@ -16,6 +17,7 @@ export function useKeyPressed(targetKey: string) {
   const upHandler = useCallback(
     (e: KeyboardEvent) => {
       const { key } = e
+      e.preventDefault()
       if (key === targetKey) {
         setKeyPressed(false)
       }
