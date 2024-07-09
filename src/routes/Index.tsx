@@ -9,7 +9,12 @@ export default function Index() {
         alignTitle="left"
         className="w-fit"
       >
-        <img src="/main-menu.svg" width={800} className="m-auto"></img>
+        <img
+          src="/main-menu.svg"
+          width={800}
+          className="m-auto select-none"
+          draggable="false"
+        ></img>
         <Text centered size="large">
           A loving tribute to MECC's{' '}
           <a className="" href="https://www.mecc.co/" target="_blank">
